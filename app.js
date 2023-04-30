@@ -3,7 +3,7 @@ const app=express()
 const router= express.Router()
 app.use(express.json())
 
-app.use('/',(req,res)=>{
+app.use('/test',(req,res)=>{
   res.send("Vanakkam Makkaley 💞\n Fianlly It worked 🥺")
 })
 
