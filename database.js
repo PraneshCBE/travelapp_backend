@@ -12,7 +12,7 @@ const dbconnection= mysql.createPool({
 }).promise()
 
 async function getUsers(){
-    const [rows]= await dbconnection.query("SELECT * FROM travel_app")
+    const [rows]= await dbconnection.query("SELECT * FROM users")
     return rows
 } 
 module.exports ={getUsers}
