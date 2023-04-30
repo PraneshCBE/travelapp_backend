@@ -6,7 +6,7 @@ console.log(process.env.PASSWORD)
 console.log(process.env.DATABASE)
 const dbconnection= mysql.createPool({
     host: process.env.HOST,
-    user: process.env.USER,
+    user: "localuh",
     password: process.env.PASSWORD,
     database: process.env.DATABASE
 }).promise()
