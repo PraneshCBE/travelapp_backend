@@ -15,6 +15,7 @@ router.get("/",async (req, res)=>{
 })
 
 router.post("/login",async (req, res)=>{
+    console.log(SECRET)
     try{
         const user= await findUser(req.body.username,req.body.password)
         if (!user)
