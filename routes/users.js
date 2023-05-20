@@ -29,7 +29,7 @@ router.post("/login",async (req, res)=>{
         }
         else
         {
-            const token=jwt.sign(user,SECRET,{expiresIn:"15s"})
+            const token=jwt.sign(user,SECRET,{expiresIn:"30s"})
             res.json({id:user.id,name:user.username,mobile:user.mobilenumber,email:user.email,token:token})
         }
     }catch(err)
