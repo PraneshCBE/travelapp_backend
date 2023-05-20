@@ -14,7 +14,7 @@ async function getUsers(){
 } 
 
 async function findUser(username,password){
-    const user= await dbconnection.query("SELECT * FROM users WHERE username=? AND password=?",[username,password])
+    const user= await dbconnection.query("SELECT * FROM users WHERE username=? AND password=?",[username,password])[0]
     console.log(user)
     return user
 }
