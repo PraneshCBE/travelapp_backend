@@ -12,4 +12,10 @@ async function getUsers(){
     const [rows]= await dbconnection.query("SELECT * FROM users")
     return rows
 } 
-module.exports ={getUsers}
+
+async function findUser(username,password){
+    const user= await dbconnection.query("SELECT * FROM users WHERE username=? AND password=?",[username,password])
+    console.log(user)
+    return user
+}
+module.exports ={getUsers,findUser}
