@@ -1,8 +1,12 @@
 const express=require("express")
 const {getUsers,findUser} = require("../database.js")
-const jwt=require("jsonwebtoken")
 const router= express.Router()
+//JWT AND SECRET
+const jwt=require("jsonwebtoken")
 var SECRET=require('crypto').randomBytes(64).toString('hex')
+
+
+//GET USER Details
 router.get("/",authenticateToken,async (req, res)=>{
     try{
     const users= await getUsers()
@@ -14,6 +18,7 @@ router.get("/",authenticateToken,async (req, res)=>{
     }
 })
 
+//User Login
 router.post("/login",async (req, res)=>{
     console.log(SECRET)
     try{
@@ -24,7 +29,7 @@ router.post("/login",async (req, res)=>{
         }
         else
         {
-            const token=jwt.sign(user,SECRET,{expiresIn:"1h"})
+            const token=jwt.sign(user,SECRET,{expiresIn:"15s"})
             res.json({id:user.id,name:user.username,mobile:user.mobilenumber,email:user.email,token:token})
         }
     }catch(err)
@@ -35,6 +40,8 @@ router.post("/login",async (req, res)=>{
 })
 
 
+
+//Middleware for Authentication
 function authenticateToken(req,res,next){
      const authHeader=req.headers['authorization']
      const token=authHeader && authHeader.split(' ')[1]
