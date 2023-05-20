@@ -6,7 +6,7 @@ var SECRET=require('crypto').randomBytes(64).toString('hex')
 router.get("/",authenticateToken,async (req, res)=>{
     try{
     const users= await getUsers()
-    res.send(users.filter(user=>user.id!=req.user.id))
+    res.send(users.filter(user=>user.id==req.user.id))
     }catch(err)
     {
         console.log(err.stack)
