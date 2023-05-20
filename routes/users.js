@@ -11,7 +11,7 @@ var expiresIn="30s"
 router.get("/profile",authenticateToken,async (req, res)=>{
     try{
     const users= await getUsers()
-    res.json({profile:(users.filter(user=>user.id==req.user.id)),bonus:"💞\nAccess the profile details by (result.profile)[0]"})
+    res.json({profile:(users.filter(user=>user.id==req.user.id)),bonus:"💞  Access the profile details by (result.profile)[0]"})
     }catch(err)
     {
         console.log(err.stack)
