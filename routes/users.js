@@ -16,7 +16,14 @@ router.get("/",async (req, res)=>{
 router.post("/login",async (req, res)=>{
     try{
         const user= await findUser(req.body.username,req.body.password)
-        res.send(user)
+        if (user==[])
+        {
+            res.status(404).send({error:"User Not Found or Invalid Credentials"})
+        }
+        else
+        {
+            res.send(user)
+        }
     }catch(err)
     {
         console.log(err.stack)
