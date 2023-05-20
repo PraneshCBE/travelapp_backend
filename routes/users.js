@@ -1,7 +1,8 @@
 const express=require("express")
 const {getUsers,findUser} = require("../database.js")
+const jwt=require("jsonwebtoken")
 const router= express.Router()
-
+var SECRET=require('crypto').randomBytes(64).toString('hex')
 router.get("/",async (req, res)=>{
     try{
     const users= await getUsers()
@@ -22,7 +23,8 @@ router.post("/login",async (req, res)=>{
         }
         else
         {
-            res.send(user)
+            const token=jwt.sign(user,SECRET,{expiresIn:"1h"})
+            res.json({user,token:token})
         }
     }catch(err)
     {
