@@ -14,8 +14,8 @@ async function getUsers(){
 } 
 
 async function findUser(username,password){
-    const user= await dbconnection.query("SELECT * FROM users WHERE username=? AND password=?",[username,password])[0]
-    console.log(user)
+    const user= await dbconnection.query("SELECT * FROM users WHERE username=? AND password=?",[username,password])
+    console.log(user[0])
     return user
 }
 module.exports ={getUsers,findUser}
