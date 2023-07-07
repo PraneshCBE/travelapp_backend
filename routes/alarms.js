@@ -5,7 +5,7 @@ const router= express.Router()
 //JWT AND SECRET 
 const jwt=require("jsonwebtoken")
 var SECRET=require('crypto').randomBytes(64).toString('hex')
-var expiresIn="1hr"
+var expiresIn="1h"
 
 //GET ALARMS
 router.get("/:id",authenticateToken,async (req, res)=>{

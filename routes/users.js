@@ -4,7 +4,7 @@ const router= express.Router()
 //JWT AND SECRET
 const jwt=require("jsonwebtoken")
 var SECRET=require('crypto').randomBytes(64).toString('hex')
-var expiresIn="1hr"
+var expiresIn="1h"
 
 
 //GET USER Details
@@ -30,7 +30,7 @@ router.post("/login",async (req, res)=>{
         }
         else
         {
-            const token=jwt.sign(user,SECRET,{expiresIn:expiresIn}) // Token Expires in 30 seconds
+            const token=jwt.sign(user,SECRET,{expiresIn:expiresIn})
             res.json({id:user.id,name:user.username,mobile:user.mobilenumber,email:user.email,token:token})
         }
     }catch(err)
