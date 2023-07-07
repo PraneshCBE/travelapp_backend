@@ -25,7 +25,7 @@ async function getAlarms(user_id){
 }
 
 async function addAlarm(user_id,location,alarm_time){
-    const [rows]= await dbconnection.query("INSERT INTO location_alarm (user_id,location,alarm_time) VALUES (?,?,?)",[user_id,location,alarm_time])
+    const [rows]= await dbconnection.query("INSERT INTO location_alarm (user_id,destination,time) VALUES (?,?,?)",[user_id,location,alarm_time])
     return rows
 }
 module.exports ={
