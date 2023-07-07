@@ -1,16 +1,16 @@
 const express=require("express")
 const {getAlarms,addAlarm} = require("../database.js")
+require('dotenv').config()
 const router= express.Router()
 
 //JWT AND SECRET 
 const jwt=require("jsonwebtoken")
-var SECRET=require('crypto').randomBytes(64).toString('hex')
-var expiresIn="1h"
+var SECRET=process.env.SECRET
 
 //GET ALARMS
-router.get("/:id",authenticateToken,async (req, res)=>{
+router.get("/",authenticateToken,async (req, res)=>{
     try{
-    const alarms= await getAlarms(req.params.id)
+    const alarms= await getAlarms(req.user.id)
     res.json({alarms:alarms})
     }catch(err)
     {

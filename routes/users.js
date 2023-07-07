@@ -1,9 +1,10 @@
 const express=require("express")
 const {getUsers,findUser} = require("../database.js")
 const router= express.Router()
+require('dotenv').config()
 //JWT AND SECRET
 const jwt=require("jsonwebtoken")
-var SECRET=require('crypto').randomBytes(64).toString('hex')
+var SECRET=process.env.SECRET
 var expiresIn="1h"
 
 
