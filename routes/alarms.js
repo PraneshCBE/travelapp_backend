@@ -12,6 +12,7 @@ router.get("/",authenticateToken,async (req, res)=>{
     try{
     const alarms= await getAlarms(req.user.id)
     res.json({alarms:alarms})
+    console.log("Alarms Info invoked by user id: "+req.user.id+" at "+new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}))
     }catch(err)
     {
         console.log(err.stack)
@@ -22,7 +23,16 @@ router.get("/",authenticateToken,async (req, res)=>{
 router.post("/set",authenticateToken,async (req, res)=>{
     try{
     const alarms= await addAlarm(req.user.id,req.body.location,req.body.alarm_time)
-    res.json({alarms:alarms})
+    if (alarms.affectedRows==1)
+    {
+        res.json({message:"Alarm Set Successfully 🥳"})
+    }
+    else
+    {
+        res.status(500).send({error:"Something Broke 💔",message:"Text Pranesh for more info 😎"})
+    }
+    console.log("Alarm Set invoked by user id: "+req.user.id+" at "+new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}))
+    console.log(alarms)
     }catch(err)
     {
         console.log(err.stack)
