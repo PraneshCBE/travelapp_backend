@@ -4,7 +4,7 @@ const router= express.Router()
 //JWT AND SECRET
 const jwt=require("jsonwebtoken")
 var SECRET=require('crypto').randomBytes(64).toString('hex')
-var expiresIn="30s"
+var expiresIn="1hr"
 
 
 //GET USER Details

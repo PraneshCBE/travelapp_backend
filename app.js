@@ -10,6 +10,8 @@ app.use('/test',(req,res)=>{
 const userRoute = require('./routes/users.js')
 app.use('/users',userRoute)
 
+const alarmRoute = require('./routes/alarms.js')
+app.use('/alarms',alarmRoute)
 
 
   //Starting Server
