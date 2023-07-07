@@ -19,6 +19,16 @@ router.get("/",authenticateToken,async (req, res)=>{
     }
 })
 
+router.post("/set",authenticateToken,async (req, res)=>{
+    try{
+    const alarms= await addAlarm(req.user.id,req.body.location,req.body.alarm_time)
+    res.json({alarms:alarms})
+    }catch(err)
+    {
+        console.log(err.stack)
+        res.status(500).send({error:"Something Broke 💔",message:"Text Pranesh for more info 😎"})
+    }
+})
 
 //Middleware for Authentication
 function authenticateToken(req,res,next){

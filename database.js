@@ -20,7 +20,7 @@ async function findUser(username,password){
 }
 
 async function getAlarms(user_id){
-    const [rows]= await dbconnection.query("SELECT * FROM location_alarm WHERE user_id=?",[user_id])
+    const [rows]= await dbconnection.query("SELECT destination,time FROM location_alarm WHERE user_id=?",[user_id])
     return rows
 }
 
